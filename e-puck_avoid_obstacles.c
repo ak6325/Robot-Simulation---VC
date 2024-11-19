@@ -68,9 +68,6 @@ int main(int argc, char **argv) {
       }
     }
 
-    // Set the motor speeds
-    wb_motor_set_velocity(left_motor, left_speed);
-    wb_motor_set_velocity(right_motor, right_speed);
   }
 
   // Cleanup the Webots API
