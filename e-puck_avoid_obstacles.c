@@ -3,25 +3,11 @@
 #include <webots/robot.h>
 #include <webots/light_sensor.h>
 #include <webots/distance_sensor.h>
-#include <math.h> // For fabs()
-#include <webots/gps.h>
 
 #define TIME_STEP 64       // Simulation time step in ms
 #define MAX_SPEED 6.28
 #define WALL_THRESHOLD 100.0
-#define LIGHT_THRESHOLD 500.0
-#define GPS_THRESHOLD 0.07 // GPS Tolerance Threshold
-
-bool dead_end();
-
-double clamp(double value, double min_value, double max_value) {
-    if (value < min_value) {
-        return min_value;
-    } else if (value > max_value) {
-        return max_value;
-    }
-    return value;
-}
+#define LIGHT_THRESHOLD 500.
 
 int main(int argc, char **argv) {
   // Initializing Webots API
@@ -158,10 +144,6 @@ int main(int argc, char **argv) {
         }
       }
     }
-
-    // Applies the clamp function to ensure the speed stays within bounds
-    left_speed = clamp(left_speed, -MAX_SPEED, MAX_SPEED);
-    right_speed = clamp(right_speed, -MAX_SPEED, MAX_SPEED);
 
     // Sets motor speeds
     wb_motor_set_velocity(left_motor, left_speed);
