@@ -35,7 +35,7 @@ int main(int argc, char **argv) {
   
   // Initializes motor speed
   double light_deadend[11];
-  double gps_coordinates[20][3]; // Stores up to 20 dead-end coordinates (x, y, z)
+  double gps_coordinates[10][3]; // Stores up to 10 dead-end coordinates (x, y, z)
   double left_speed = MAX_SPEED;
   double right_speed = MAX_SPEED;
   int nest = 0;
@@ -119,6 +119,7 @@ int main(int argc, char **argv) {
         gps_coordinates[nest - 1][1] = gps_values[1]; // y-coordinate
         gps_coordinates[nest - 1][2] = gps_values[2]; // z-coordinate
 
+        printf("\n_____________________________");
         printf("\nDead end %d.\n", nest);
         printf("Light intensity: %f\n", light_deadend[nest]);
         printf("Coordinates: \nx = %f \ny = %f \nz = %f\n", gps_values[0], gps_values[1], gps_values[2]);
@@ -132,6 +133,7 @@ int main(int argc, char **argv) {
             j = i;
           }
         }
+        printf("\n___________________________________________________________");
         printf("\nBrightest light intensity: %f found at dead end %d\n", max, j);
         printf("Position with brightest light intensity:\nx = %f \ny = %f \nz = %f\n",
                gps_coordinates[j - 1][0], gps_coordinates[j - 1][1], gps_coordinates[j - 1][2]);
@@ -142,7 +144,9 @@ int main(int argc, char **argv) {
       if (fabs(gps_values[0] - gps_coordinates[j - 1][0]) < GPS_THRESHOLD &&
           fabs(gps_values[1] - gps_coordinates[j - 1][1]) < GPS_THRESHOLD &&
           fabs(gps_values[2] - gps_coordinates[j - 1][2]) < GPS_THRESHOLD) {
-          printf("\n\n|Robot at position with brightest light intensity reached!|\
+          printf("\n...........................................................");
+          printf("\n\n|Robot at position with brightest light intensity reached!|\n");
+          printf("\n...........................................................\n");
           target_reached = true;
       }
     } else {
